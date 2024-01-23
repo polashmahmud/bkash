@@ -1,0 +1,19 @@
+{
+    "name": "polashmahmud/bkash",
+    "description": "Bkash Payment Gateway",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Polashmahmud\\Bkash\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Polash Mahmud",
+            "email": "polashmahmud@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
