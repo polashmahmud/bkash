@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Bkash extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'paymentID',
+        'trxID',
+        'transactionStatus',
+        'amount',
+        'currency',
+        'intent',
+        'paymentExecuteTime',
+        'merchantInvoiceNumber',
+        'payerReference',
+        'customerMsisdn',
+        'statusCode',
+        'statusMessage',
+    ];
 }

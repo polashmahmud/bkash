@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Polashmahmud\Bkash\Http\Controllers\BkashController;
 
 // Checkout (URL) User Part
-Route::get('/bkash/pay', [BkashController::class, 'payment'])->name('url-pay');
 Route::post('/bkash/create', [BkashController::class, 'createPayment'])->name('url-create');
 Route::get('/bkash/callback', [BkashController::class, 'callback'])->name('url-callback');
 
