@@ -139,16 +139,12 @@ class BkashController extends Controller
         $allRequest = $request->all();
 
         if (isset($allRequest['status']) && $allRequest['status'] == 'failure') {
-            dd($allRequest);
-            return response()->json([
-                'status' => 'failure',
-                'message' => 'Payment Failed !!'
+            return view('bkash::fail')->with([
+                'response' => 'Payment Failed !!'
             ]);
         } else if (isset($allRequest['status']) && $allRequest['status'] == 'cancel') {
-            dd($allRequest);
-            return response()->json([
-                'status' => 'cancel',
-                'message' => 'Payment Cancelled !!'
+            return view('bkash::fail')->with([
+                'response' => 'Payment Cancelled !!'
             ]);
         } else {
 
@@ -157,7 +153,9 @@ class BkashController extends Controller
             $res_array = json_decode($response, true);
 
             if (array_key_exists("statusCode", $res_array) && $res_array['statusCode'] != '0000') {
-                $this->createBkashPayment($res_array);
+                return view('bkash::fail')->with([
+                    'response' => $res_array['statusMessage'],
+                ]);
             }
 
             if (array_key_exists("message", $res_array)) {
@@ -166,9 +164,17 @@ class BkashController extends Controller
                 $response = $this->queryPayment($allRequest['paymentID']);
                 $res_array = json_decode($response, true);
                 $this->createBkashPayment($res_array);
+
+                return view('bkash::success')->with([
+                    'response' => $res_array['trxID']
+                ]);
             }
 
             $this->createBkashPayment($res_array);
+
+            return view('bkash::success')->with([
+                'response' => $res_array['trxID']
+            ]);
         }
     }
 

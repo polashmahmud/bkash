@@ -27,5 +27,6 @@ class BkashServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/bkash.php', 'bkash'
         );
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'bkash');
     }
 }
