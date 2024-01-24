@@ -173,7 +173,7 @@ class BkashController extends Controller
             $this->createBkashPayment($res_array);
 
             return view('bkash::success')->with([
-                'response' => $res_array['trxID']
+                'response' => $res_array
             ]);
         }
     }
