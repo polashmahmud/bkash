@@ -14,14 +14,14 @@ class BkashController extends Controller
 
     public function __construct()
     {
-        $this->base_url = env('BKASH_BASE_URL');
+        $this->base_url = config('bkash.base_url');
     }
 
     public function authHeaders(){
         return array(
             'Content-Type:application/json',
             'Authorization:' .$this->grant(),
-            'X-APP-Key:'.env('BKASH_APP_KEY')
+            'X-APP-Key:'.config('bkash.app_key'),
         );
     }
 
@@ -44,12 +44,12 @@ class BkashController extends Controller
     {
         $header = array(
             'Content-Type:application/json',
-            'username:'.env('BKASH_USER_NAME'),
-            'password:'.env('BKASH_PASSWORD')
+            'username:'.config('bkash.username'),
+            'password:'.config('bkash.password'),
         );
         $header_data_json=json_encode($header);
 
-        $body_data = array('app_key'=> env('BKASH_APP_KEY'), 'app_secret'=>env('BKASH_APP_SECRET'));
+        $body_data = array('app_key'=> config('bkash.app_key'), 'app_secret'=>config('bkash.app_secret'));
         $body_data_json=json_encode($body_data);
 
         $response = $this->curlWithBody('/tokenized/checkout/token/grant',$header,'POST',$body_data_json);
