@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Success Callback</title>
+    <title>Payment Success</title>
     <!-- Include Tailwind CSS via CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -52,6 +52,11 @@
         <!-- Add more rows for other payment details -->
         </tbody>
     </table>
+
+    <!-- Back button -->
+    <div class="flex justify-center">
+        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">Back to Home</a>
+    </div>
 </div>
 </body>
 </html>
