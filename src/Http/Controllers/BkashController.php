@@ -68,6 +68,7 @@ class BkashController extends Controller
             'amount'    => 'required|numeric|min:1',
             'reference' => 'nullable|string',
             'invoice'   => 'nullable|string',
+            'redirect'  => 'nullable|string',
         ]);
 
         $header = $this->authHeaders();
@@ -77,7 +78,7 @@ class BkashController extends Controller
         $body_data = array(
             'mode'                  => '0011',
             'payerReference'        => $request->reference ?? ' ',
-            'callbackURL'           => $website_url . '/bkash/callback',
+            'callbackURL'           => $website_url . '/bkash/callback' . ($request->redirect ? '?redirect=' . $request->redirect : ''),
             'amount'                => $request->amount,
             'currency'              => 'BDT',
             'intent'                => 'sale',
@@ -155,6 +156,7 @@ class BkashController extends Controller
             if (array_key_exists("statusCode", $res_array) && $res_array['statusCode'] != '0000') {
                 return view('bkash::fail')->with([
                     'response' => $res_array['statusMessage'],
+                    'redirect' => $request->redirect ?? '',
                 ]);
             }
 
@@ -166,14 +168,16 @@ class BkashController extends Controller
                 $this->createBkashPayment($res_array);
 
                 return view('bkash::success')->with([
-                    'response' => $res_array['trxID']
+                    'response' => $res_array['trxID'],
+                    'redirect' => $request->redirect ?? '',
                 ]);
             }
 
             $this->createBkashPayment($res_array);
 
             return view('bkash::success')->with([
-                'response' => $res_array
+                'response' => $res_array,
+                'redirect' => $request->redirect ?? '',
             ]);
         }
     }

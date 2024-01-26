@@ -53,10 +53,13 @@
         </tbody>
     </table>
 
-    <!-- Back button -->
-    <div class="flex justify-center">
-        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">Back to Home</a>
-    </div>
+    @if($redirect)
+        <div class="flex justify-center">
+            <a href="/{{ $redirect }}"
+               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">Back
+            </a>
+        </div>
+    @endif
 </div>
 </body>
 </html>
