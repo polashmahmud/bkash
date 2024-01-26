@@ -4,6 +4,8 @@ namespace Polashmahmud\Bkash\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Polashmahmud\Bkash\Events\BkashPaymentFail;
+use Polashmahmud\Bkash\Events\BkashPaymentSuccess;
 use Polashmahmud\Bkash\Models\Bkash;
 use Session;
 use URL;
@@ -140,12 +142,18 @@ class BkashController extends Controller
         $allRequest = $request->all();
 
         if (isset($allRequest['status']) && $allRequest['status'] == 'failure') {
+            event(new BkashPaymentFail('Payment Failed !!'));
+
             return view('bkash::fail')->with([
-                'response' => 'Payment Failed !!'
+                'response' => 'Payment Failed !!',
+                'redirect' => $request->redirect ?? '',
             ]);
         } else if (isset($allRequest['status']) && $allRequest['status'] == 'cancel') {
+            event(new BkashPaymentFail('Payment Cancelled !!'));
+
             return view('bkash::fail')->with([
-                'response' => 'Payment Cancelled !!'
+                'response' => 'Payment Cancelled !!',
+                'redirect' => $request->redirect ?? '',
             ]);
         } else {
 
@@ -154,6 +162,8 @@ class BkashController extends Controller
             $res_array = json_decode($response, true);
 
             if (array_key_exists("statusCode", $res_array) && $res_array['statusCode'] != '0000') {
+                event(new BkashPaymentFail($res_array['statusMessage']));
+
                 return view('bkash::fail')->with([
                     'response' => $res_array['statusMessage'],
                     'redirect' => $request->redirect ?? '',
@@ -167,6 +177,8 @@ class BkashController extends Controller
                 $res_array = json_decode($response, true);
                 $this->createBkashPayment($res_array);
 
+                event(new BkashPaymentSuccess($res_array, $request->query()));
+
                 return view('bkash::success')->with([
                     'response' => $res_array['trxID'],
                     'redirect' => $request->redirect ?? '',
@@ -174,6 +186,8 @@ class BkashController extends Controller
             }
 
             $this->createBkashPayment($res_array);
+
+            event(new BkashPaymentSuccess($res_array, $request->query()));
 
             return view('bkash::success')->with([
                 'response' => $res_array,
