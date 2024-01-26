@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\BkashIndexController;
+use App\Http\Controllers\BkashShowController;
 use Illuminate\Support\Facades\Route;
 use Polashmahmud\Bkash\Http\Controllers\BkashController;
 
 // Admin Panel
 Route::get('/bkash', BkashIndexController::class)->name('bkash.index');
+Route::get('/bkash/{bkash}', BkashShowController::class)->name('bkash.show');
 
 // Checkout (URL) User Part
 Route::post('/bkash/create', [BkashController::class, 'createPayment'])->name('url-create');

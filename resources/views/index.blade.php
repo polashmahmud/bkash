@@ -103,7 +103,7 @@
                         ৳ {{ $transaction->amount }}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#"
+                        <a href="{{ route('bkash.show', $transaction->id) }}"
                            class="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:underline dark:hover:text-blue-400">
                             View
                         </a>
