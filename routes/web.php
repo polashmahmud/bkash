@@ -14,5 +14,5 @@ Route::post('/bkash/create', [BkashController::class, 'createPayment'])->name('u
 Route::get('/bkash/callback', [BkashController::class, 'callback'])->name('url-callback');
 
 // Checkout (URL) Admin Part
-Route::get('/bkash/refund', [BkashController::class, 'getRefund'])->name('url-get-refund');
+Route::get('/bkash/refund/{bkash}', [BkashController::class, 'getRefund'])->name('url-get-refund');
 Route::post('/bkash/refund', [BkashController::class, 'refundPayment'])->name('url-post-refund');

@@ -196,8 +196,22 @@ class BkashController extends Controller
         }
     }
 
+    public function getRefund($id)
+    {
+        $bkash = Bkash::findOrFail($id);
+
+        return view('bkash::refund', compact('bkash'));
+    }
+
     public function refundPayment(Request $request)
     {
+        $request->validate([
+            'paymentID' => 'required|string',
+            'amount'    => 'required|numeric|min:1',
+            'trxID'     => 'required|string',
+            'reason'    => 'required|string',
+        ]);
+
         $header = $this->authHeaders();
 
         $body_data = array(
@@ -205,7 +219,7 @@ class BkashController extends Controller
             'amount'    => $request->amount,
             'trxID'     => $request->trxID,
             'sku'       => 'sku',
-            'reason'    => 'Quality issue'
+            'reason'    => $request->reason,
         );
 
         $body_data_json = json_encode($body_data);
@@ -216,14 +230,13 @@ class BkashController extends Controller
 
         if (isset($res_array['refundTrxID'])) {
             // your database insert operation
+            dd($res_array);
             $message = "Refund successful.bKash refund trx ID : " . $res_array['refundTrxID'];
         } else {
             $message = "Refund Failed !!";
         }
 
-        return view('Bkash.refund')->with([
-            'response' => $message,
-        ]);
+        dd($message);
     }
 
     private function createBkashPayment($request)
