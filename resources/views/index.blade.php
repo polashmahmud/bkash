@@ -1,4 +1,4 @@
-<x-bkash::layout>
+<x-bkash::layouts.app>
     <div class="mx-auto max-w-screen-xl space-y-6 py-12">
 
         <div class="flex items-center space-x-6">
@@ -208,4 +208,4 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-</x-bkash::layout>
+</x-bkash::layouts.app>
