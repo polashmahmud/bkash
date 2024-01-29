@@ -7,7 +7,7 @@ use Polashmahmud\Bkash\Http\Controllers\BkashController;
 
 // Admin Panel
 Route::get('/bkash', BkashIndexController::class)->name('bkash.index');
-Route::get('/bkash-transaction/{bkash}', BkashShowController::class)->name('bkash.show');
+Route::get('/bkash/{id}', BkashShowController::class)->name('bkash.show');
 
 // Checkout (URL) User Part
 Route::post('/bkash/create', [BkashController::class, 'createPayment'])->name('url-create');

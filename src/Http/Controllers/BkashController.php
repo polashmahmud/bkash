@@ -230,6 +230,7 @@ class BkashController extends Controller
 
         if (isset($res_array['refundTrxID'])) {
             // your database insert operation
+            $transaction = Bkash::where('paymentID', $request->paymentID)->first();
             $transaction->refundTrxID = $res_array['refundTrxID'];
             $transaction->refundTransactionStatus = $res_array['transactionStatus'];
             $transaction->refundAmount = $res_array['amount'];
@@ -245,7 +246,7 @@ class BkashController extends Controller
             $message = "Refund Failed !!";
         }
 
-        return redirect()->route('url-get-refund', $transaction->id)->with('message', $message);
+        return redirect()->route('bkash.show', $transaction->id)->with('message', $message);
     }
 
     private function createBkashPayment($request)
