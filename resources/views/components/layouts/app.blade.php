@@ -34,9 +34,9 @@
             </svg>
         </button>
         <div class="hidden w-full md:block md:w-auto text-gray-600 space-x-3" id="navbar-solid-bg">
-{{--            <a class="@if($period == '1') font-bold text-gray-200 @endif" href="{{ route('bkash.index') }}?period=1&page={{ $page }}">Today</a>--}}
-{{--            <a class="@if($period == '7') font-bold text-gray-200 @endif"  href="{{ route('bkash.index') }}?period=7&page={{ $page }}">7 days</a>--}}
-{{--            <a class="@if($period == '30') font-bold text-gray-200 @endif"  href="{{ route('bkash.index') }}?period=30&page={{ $page }}">30 days</a>--}}
+            <a class="@if(request()->get('period')  == '1') font-bold text-gray-200 @endif" href="{{ route('bkash.index') }}?period=1&page={{ request()->get('page') }}">Today</a>
+            <a class="@if(request()->get('period') == '7') font-bold text-gray-200 @endif"  href="{{ route('bkash.index') }}?period=7&page={{ request()->get('page') }}">7 days</a>
+            <a class="@if(request()->get('period') == '30') font-bold text-gray-200 @endif"  href="{{ route('bkash.index') }}?period=30&page={{ request()->get('page') }}">30 days</a>
         </div>
     </div>
 </nav>
