@@ -230,13 +230,22 @@ class BkashController extends Controller
 
         if (isset($res_array['refundTrxID'])) {
             // your database insert operation
-            dd($res_array);
+            $transaction->refundTrxID = $res_array['refundTrxID'];
+            $transaction->refundTransactionStatus = $res_array['transactionStatus'];
+            $transaction->refundAmount = $res_array['amount'];
+            $transaction->refundCurrency = $res_array['currency'];
+            $transaction->refundCharge = $res_array['charge'];
+            $transaction->refundCompletedTime = $res_array['completedTime'];
+            $transaction->refundStatusCode = $res_array['statusCode'];
+            $transaction->refundStatusMessage = $res_array['statusMessage'];
+            $transaction->save();
+
             $message = "Refund successful.bKash refund trx ID : " . $res_array['refundTrxID'];
         } else {
             $message = "Refund Failed !!";
         }
 
-        dd($message);
+        return redirect()->route('url-get-refund', $transaction->id)->with('message', $message);
     }
 
     private function createBkashPayment($request)

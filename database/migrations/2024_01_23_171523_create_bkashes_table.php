@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -25,6 +24,15 @@ return new class extends Migration
             $table->string('customerMsisdn')->nullable();
             $table->string('statusCode')->nullable();
             $table->string('statusMessage')->nullable();
+            // Refund
+            $table->string('refundTrxID')->nullable();
+            $table->string('refundTransactionStatus')->nullable();
+            $table->string('refundAmount')->nullable();
+            $table->string('refundCurrency')->nullable();
+            $table->string('refundCharge')->nullable();
+            $table->string('refundCompletedTime')->nullable();
+            $table->string('refundStatusCode')->nullable();
+            $table->string('refundStatusMessage')->nullable();
             $table->timestamps();
         });
     }

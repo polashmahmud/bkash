@@ -22,5 +22,13 @@ class Bkash extends Model
         'customerMsisdn',
         'statusCode',
         'statusMessage',
+        'refundTrxID',
+        'refundTransactionStatus',
+        'refundAmount',
+        'refundCurrency',
+        'refundCharge',
+        'refundCompletedTime',
+        'refundStatusCode',
+        'refundStatusMessage'
     ];
 }
