@@ -80,7 +80,7 @@ class BkashController extends Controller
         $body_data = array(
             'mode'                  => '0011',
             'payerReference'        => $request->reference ?? ' ',
-            'callbackURL'           => $website_url . '/bkash/callback' . ($request->redirect ? '?redirect=' . $request->redirect : ''),
+            'callbackURL'           => $website_url . '/bkash/payment/callback' . ($request->redirect ? '?redirect=' . $request->redirect : ''),
             'amount'                => $request->amount,
             'currency'              => 'BDT',
             'intent'                => 'sale',

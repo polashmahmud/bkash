@@ -1,4 +1,4 @@
-<x-bkash::layout>
+<x-bkash::layouts.app>
     <div class="mx-auto max-w-2xl flex justify-center space-y-6 py-12">
 
         <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -9,7 +9,7 @@
                 </a>
             </div>
             <div class="flow-root">
-                <form action="{{ route('url-post-refund') }}" method="post">
+                <form action="{{ route('bkash.payment.refund') }}" method="post">
                     @csrf
                     <div>
                         <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PaymentID</label>
@@ -42,4 +42,4 @@
         </div>
 
     </div>
-</x-bkash::layout>
+</x-bkash::layouts.app>

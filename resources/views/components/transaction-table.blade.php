@@ -15,10 +15,10 @@
                 Tax ID
             </th>
             <th scope="col" class="px-6 py-3">
-                Status
+                Amount
             </th>
             <th scope="col" class="px-6 py-3">
-                Amount
+                Refund Amount
             </th>
             <th scope="col" class="px-6 py-3">
                 Actions
@@ -41,18 +41,18 @@
                     {{ $transaction->trxID }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ $transaction->transactionStatus }}
+                    ৳ {{ $transaction->amount }}
                 </td>
                 <td class="px-6 py-4">
-                    ৳ {{ $transaction->amount }}
+                    ৳ {{ $transaction->refundAmount ?? 0 }}
                 </td>
                 <td class="px-6 py-4 space-x-3">
                     <a href="{{ route('bkash.show', $transaction->id) }}"
-                       class="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:underline dark:hover:text-blue-400">
+                       class="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:underline">
                         View
                     </a>
-                    <a href="/bkash/refund/{{ $transaction->id }}"
-                       class="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:underline dark:hover:text-blue-400">
+                    <a href="/bkash/payment/refund/{{ $transaction->id }}"
+                       class="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500 hover:underline">
                         Refund
                     </a>
                 </td>
