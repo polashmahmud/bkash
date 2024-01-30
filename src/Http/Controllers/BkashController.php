@@ -243,7 +243,7 @@ class BkashController extends Controller
 
             $message = "Refund successful.bKash refund trx ID : " . $res_array['refundTrxID'];
         } else {
-            $message = "Refund Failed !!";
+            return back()->with('message', 'Refund Failed !!');
         }
 
         return redirect()->route('bkash.show', $transaction->id)->with('message', $message);
