@@ -17,7 +17,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
 
 // Checkout (URL) User Part
-Route::post('/bkash/payment/create', [BkashController::class, 'createPayment'])->name('bkash.payment-create');
+Route::post('/bkash/payment/create', [BkashController::class, 'createPayment'])->name('bkash.payment.create');
 Route::get('/bkash/payment/callback', [BkashController::class, 'callback'])->name('bkash.callback');
 
 
