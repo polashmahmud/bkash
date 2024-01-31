@@ -90,6 +90,10 @@ class BkashController extends Controller
 
         $response = $this->curlWithBody('/tokenized/checkout/create', $header, 'POST', $body_data_json);
 
+        if (config('bkash.use') == 'web') {
+            return redirect((json_decode($response)->bkashURL));
+        }
+
         return $response;
     }
 
