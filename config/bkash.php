@@ -17,5 +17,14 @@ return [
     'app_key'    => env('BKASH_APP_KEY', ''),
     'app_secret' => env('BKASH_APP_SECRET', ''),
     'username'   => env('BKASH_USER_NAME', ''),
-    'password'   => env('BKASH_PASSWORD', '')
+    'password'   => env('BKASH_PASSWORD', ''),
+
+    /*
+  |--------------------------------------------------------------------------
+  | Admin Panel Access
+  |--------------------------------------------------------------------------
+  |
+  */
+
+    'allowed_emails' => [],
 ];

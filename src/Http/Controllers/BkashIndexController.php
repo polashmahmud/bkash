@@ -10,6 +10,12 @@ class BkashIndexController extends Controller
 {
     public function __invoke(Request $request)
     {
+        $allowedEmails = config('bkash.allowed_emails');
+
+        if (!in_array(auth()->user()->email, $allowedEmails)) {
+            abort(403);
+        }
+
         $transactions = Bkash::latest()
             ->paginate()
             ->withQueryString();
