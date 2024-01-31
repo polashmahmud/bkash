@@ -1,19 +1,30 @@
 {
     "name": "polashmahmud/bkash",
-    "description": "Bkash Payment Gateway",
+    "description": "Bkash Payment Gateway for Laravel",
     "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Polashmahmud\\Bkash\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Polash Mahmud",
             "email": "polashmahmud@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Polashmahmud\\Bkash\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": "^7.2|^8.0|^8.1|^8.2|^8.3",
+        "illuminate/database": "^6.0|^7.0|^8.0|^9.0|^10.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Polashmahmud\\Bkash\\BkashServiceProvider"
+            ]
+        }
+    }
 }
