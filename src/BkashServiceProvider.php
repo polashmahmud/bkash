@@ -23,6 +23,8 @@ class BkashServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->publishes([
             __DIR__.'/../config/bkash.php' => config_path('bkash.php'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/bkash'),
+            __DIR__.'/../database/migrations' => database_path('migrations'),
         ]);
         $this->mergeConfigFrom(
             __DIR__.'/../config/bkash.php', 'bkash'
