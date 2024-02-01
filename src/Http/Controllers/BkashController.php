@@ -71,6 +71,7 @@ class BkashController extends Controller
             'reference' => 'nullable|string',
             'invoice'   => 'nullable|string',
             'redirect'  => 'nullable|string',
+            'query'     => 'nullable|string',
         ]);
 
         $header = $this->authHeaders();
@@ -80,7 +81,7 @@ class BkashController extends Controller
         $body_data = array(
             'mode'                  => '0011',
             'payerReference'        => $request->reference ?? ' ',
-            'callbackURL'           => $website_url . '/bkash/payment/callback' . ($request->redirect ? '?redirect=' . $request->redirect : ''),
+            'callbackURL'           => $website_url . '/bkash/payment/callback' . ($request->redirect ? '?redirect=' . $request->redirect : '' . ($request->query ? '&query=' . $request->query : '')),
             'amount'                => $request->amount,
             'currency'              => 'BDT',
             'intent'                => 'sale',
