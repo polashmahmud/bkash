@@ -35,5 +35,5 @@ return [
     | if you use laravel then use web, if you use inertia js then use api
     */
 
-    'use' => 'web'
+    'use' => 'api'
 ];

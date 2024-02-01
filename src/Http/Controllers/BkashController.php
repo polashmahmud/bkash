@@ -71,7 +71,7 @@ class BkashController extends Controller
             'reference' => 'nullable|string',
             'invoice'   => 'nullable|string',
             'redirect'  => 'nullable|string',
-            'query'     => 'nullable|string',
+            'parameter' => 'nullable|string',
         ]);
 
         $header = $this->authHeaders();
@@ -81,7 +81,7 @@ class BkashController extends Controller
         $body_data = array(
             'mode'                  => '0011',
             'payerReference'        => $request->reference ?? ' ',
-            'callbackURL'           => $website_url . '/bkash/payment/callback' . ($request->redirect ? '?redirect=' . $request->redirect : '' . ($request->query ? '&query=' . $request->query : '')),
+            'callbackURL'           => $website_url . '/bkash/payment/callback' . ($request->redirect ? '?redirect=' . $request->redirect : '') . $request->parameter ?? '',
             'amount'                => $request->amount,
             'currency'              => 'BDT',
             'intent'                => 'sale',
@@ -262,17 +262,17 @@ class BkashController extends Controller
                 'paymentID' => $request['paymentID'],
             ],
             [
-                'trxID' => $request['trxID'],
-                'transactionStatus' => $request['transactionStatus'],
-                'amount' => $request['amount'],
-                'currency' => $request['currency'],
-                'intent' => $request['intent'],
-                'paymentExecuteTime' => $request['paymentExecuteTime'],
+                'trxID'                 => $request['trxID'],
+                'transactionStatus'     => $request['transactionStatus'],
+                'amount'                => $request['amount'],
+                'currency'              => $request['currency'],
+                'intent'                => $request['intent'],
+                'paymentExecuteTime'    => $request['paymentExecuteTime'],
                 'merchantInvoiceNumber' => $request['merchantInvoiceNumber'],
-                'payerReference' => $request['payerReference'],
-                'customerMsisdn' => $request['customerMsisdn'],
-                'statusCode' => $request['statusCode'],
-                'statusMessage' => $request['statusMessage']
+                'payerReference'        => $request['payerReference'],
+                'customerMsisdn'        => $request['customerMsisdn'],
+                'statusCode'            => $request['statusCode'],
+                'statusMessage'         => $request['statusMessage']
             ]
         );
     }
